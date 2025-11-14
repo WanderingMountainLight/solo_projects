@@ -46,30 +46,48 @@ def operation(number1, number2, op_choice):
             return number1 / number2
 
 
-print("Welcome to Calculator.")
+prompt("Welcome to Calculator.")
 
-prompt('Please input first number.')
+continue_calc = True
 
-num1 = pass_num()
+while continue_calc:
 
-prompt('Please input second number.')
+    prompt('Please input first number.')
 
-num2 = pass_num()
+    num1 = pass_num()
 
-prompt('''Please select the operation you would like to calculate:
-        1) Add
-        2) Subtract
-        3) Multiply
-        4) Divide
-       ''')
+    prompt('Please input second number.')
 
-calc = op()
+    num2 = pass_num()
 
-if calc == '4':
-    while num2 == 0.0:
-        prompt('''Cannot divide by zero.\nPlease enter a different second number: ''')
-        num2 = pass_num()
+    prompt('''Please select the operation you would like to calculate:
+            1) Add
+            2) Subtract
+            3) Multiply
+            4) Divide
+        ''')
 
-prompt(f'Your first number is: {num1}')
-prompt(f'Your second number is: {num2}')
-prompt(f'Your total is: {operation(num1, num2, calc)}')
+    calc = op()
+
+    if calc == '4':
+        while num2 == 0.0:
+            prompt('''Cannot divide by zero.\nPlease enter a different second number: ''')
+            num2 = pass_num()
+
+    prompt(f'Your first number is: {num1}')
+    prompt(f'Your second number is: {num2}')
+    prompt(f'Your total is: {operation(num1, num2, calc)}')
+    prompt('''Would you like to calculate anything else?
+        Yes or No''')
+
+    answer = input()
+
+    user_answer = answer.strip().title()
+
+    while user_answer not in ['Yes', 'No']:
+        prompt('That is not a valid input. Please select: Yes or No')
+        user_answer = input().strip().title()
+
+    if user_answer == 'No':
+        prompt('Thank you for using my calculator!')
+        continue_calc = False
