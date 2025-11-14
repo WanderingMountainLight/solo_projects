@@ -1,0 +1,13 @@
+{
+    "welcome" : "Welcome to Calculator.",
+    "valid_number": "That isn't a number. Please enter a number: ",
+    "valid_op" : "That is not a valid selection. Please select from: 1) Add\n2) Subtract\n3) Multiply\n4) Divide",
+    "first_num" : "Please input first number",
+    "second_num" : "Please input second number",
+    "operation_selection" : "Please select the operation you would like to calculate:\n1) Add\n2) Subtract\n3) Multiply\n4) Divide",
+    "div_by_zero" : "Cannot divide by zero.\nPlease enter a different second number:",
+    "continue_calculation" : "Would you like to calculate anything else?\nYes or No",
+    "continue_invalid_input" : "That is not a valid input, Please select: Yes or No",
+    "thank_you" : "Thank you for using my calculator!",
+    "invalid_num": "That isn't a number. Please enter a number: "
+}

@@ -1,4 +1,8 @@
 """My Simple Calculator Program"""
+import json
+
+with open('calculator_messages.json', 'r', encoding='utf-8') as file:
+    messages = json.load(file)
 
 def prompt(message):
     """Display a formatted message to the user"""
@@ -16,7 +20,7 @@ def pass_num():
     """Passes a valid number from user input"""
     user_input = input().strip()
     while not is_valid_num(user_input):
-        prompt("That isn't a number. Please enter a number: ")
+        prompt(messages['invalid_nums'])
         user_input = input().strip()
     return float(user_input)
 
@@ -28,8 +32,7 @@ def op():
     """Error handling for invalid operation selection"""
     op_input = input().strip()
     while not valid_op(op_input):
-        prompt('''That is not a valid selection. Please select from:
-                        1) Add 2) Subtract 3) Multiply 4) Divide''')
+        prompt(messages['valid_op'])
         op_input = input().strip()
     return op_input
 
@@ -46,48 +49,42 @@ def operation(number1, number2, op_choice):
             return number1 / number2
 
 
-prompt("Welcome to Calculator.")
+prompt(messages['welcome'])
 
 continue_calc = True
 
 while continue_calc:
 
-    prompt('Please input first number.')
+    prompt(messages['first_num'])
 
     num1 = pass_num()
 
-    prompt('Please input second number.')
+    prompt(messages['second_num'])
 
     num2 = pass_num()
 
-    prompt('''Please select the operation you would like to calculate:
-            1) Add
-            2) Subtract
-            3) Multiply
-            4) Divide
-        ''')
+    prompt(messages['operation_selection'])
 
     calc = op()
 
     if calc == '4':
         while num2 == 0.0:
-            prompt('''Cannot divide by zero.\nPlease enter a different second number: ''')
+            prompt(messages['div_by_zero'])
             num2 = pass_num()
 
     prompt(f'Your first number is: {num1}')
     prompt(f'Your second number is: {num2}')
     prompt(f'Your total is: {operation(num1, num2, calc)}')
-    prompt('''Would you like to calculate anything else?
-        Yes or No''')
+    prompt(messages['continue_calculation'])
 
     answer = input()
 
     user_answer = answer.strip().title()
 
     while user_answer not in ['Yes', 'No']:
-        prompt('That is not a valid input. Please select: Yes or No')
+        prompt(messages['continue_invalid_input'])
         user_answer = input().strip().title()
 
     if user_answer == 'No':
-        prompt('Thank you for using my calculator!')
+        prompt(messages['thank_you'])
         continue_calc = False
