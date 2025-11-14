@@ -1,40 +1,49 @@
+"""My Simple Calculator Program"""
+
 def prompt(message):
+    """Display a formatted message to the user"""
     print(f'==> {message}')
 
-def isint(num):
+def is_valid_num(num):
+    """Checks if provided string can be converted to a float"""
     try:
-        int(num)
+        float(num)
         return True
     except ValueError:
         return False
 
 def pass_num():
-    user_input = input()
-    while not isint(user_input):
-        user_input = input("That isn't a number. Please enter a number: ")
-    return int(user_input)
+    """Passes a valid number from user input"""
+    user_input = input().strip()
+    while not is_valid_num(user_input):
+        prompt("That isn't a number. Please enter a number: ")
+        user_input = input().strip()
+    return float(user_input)
 
 def valid_op(oper):
-    return isint(oper) and int(oper) in [1, 2, 3, 4]
+    """Checks user input to insure valid selection"""
+    return is_valid_num(oper) and float(oper) in [1, 2, 3, 4]
 
 def op():
-    op_input = input()
+    """Error handling for invalid operation selection"""
+    op_input = input().strip()
     while not valid_op(op_input):
-        op_input = input('''That is not a valid selection. Please select from:
+        prompt('''That is not a valid selection. Please select from:
                         1) Add 2) Subtract 3) Multiply 4) Divide''')
+        op_input = input().strip()
     return op_input
 
-def operation(num):
-    match (num):
+def operation(number1, number2, op_choice):
+    """Operation evaluation"""
+    match (op_choice):
         case '1':
-            calculation = num1 + num2
+            return number1 + number2
         case '2':
-            calculation = num1 - num2
+            return number1 - number2
         case '3':
-            calculation = num1 * num2
+            return number1 * number2
         case '4':
-            calculation = num1 / num2
-    return calculation
+            return number1 / number2
 
 
 print("Welcome to Calculator.")
@@ -48,17 +57,19 @@ prompt('Please input second number.')
 num2 = pass_num()
 
 prompt('''Please select the operation you would like to calculate:
-       1) Add 2) Subtract 3) Multiply 4) Divide
+        1) Add
+        2) Subtract
+        3) Multiply
+        4) Divide
        ''')
 
 calc = op()
 
 if calc == '4':
-    while num2 == 0:
-        prompt('''Cannot divide by zero.
-               Please enter a different second number: ''')
+    while num2 == 0.0:
+        prompt('''Cannot divide by zero.\nPlease enter a different second number: ''')
         num2 = pass_num()
 
 prompt(f'Your first number is: {num1}')
 prompt(f'Your second number is: {num2}')
-prompt(f'Your total is: {operation(calc)}')
+prompt(f'Your total is: {operation(num1, num2, calc)}')
