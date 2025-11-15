@@ -25,49 +25,57 @@ I was able to get the 'happy path' core functionality working with no errors or 
 ## Next Steps
 - If I continue refining this calculator, I would look to add additional functionality around more complex calculations, and error handling.
 
-**Date:** November 14, 2025  
-**Time invested:** ~3 hours total (2 hours coding, 1 hour learning/debugging)
-**Goal:** Rebuild solo calculator with bonus features independently to prove mastery
+git  The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
+
+**Date:** November 15, 2025  
+**Time invested:** ~1 hour (coding and debugging)
+**Goal:** Complete Feature 4: Internationalization (multiple languages)
 
 ## What I Built
-Successfully rebuilt my calculator with three bonus features:
-1. **Floating-point support** - Changed validation and calculations to handle decimals
-2. **Calculator loop** - Added ability to perform multiple calculations without relaunching app
-3. **JSON configuration** - Extracted all user messages to external configuration file
+Successfully implemented internationalization with 4 languages (English, Spanish, Portuguese, German):
+- Restructured JSON to nest languages under top-level keys
+- Added language selection at program start with validation
+- Implemented dictionary mapping for cleaner language selection (LSBot's suggested refinement, my implementation)
+- Added localized yes/no validation for each language
+- All user-facing text now fully localized including error messages
 
-Still to implement: Internationalization (3+ languages)
+**All 4 bonus features now complete!**
 
 ## Key Accomplishments
-- Implemented features WITHOUT looking at yesterday's guided calculator first
-- Applied `.strip()` consistently to all inputs from the start (LSBot's refinement suggestion)
-- Used `\n` formatting in JSON for multi-line messages
+- Generated comprehensive JSON translations for 4 languages independently
+- Used dictionary mapping (`lang_map`) instead of if/elif chain for cleaner code
+- Successfully debugged language selection and message loading flow
 - Maintained 10/10 pylint score throughout
-- Proper git workflow with feature branches for each bonus feature
 
 ## Where I Got Stuck
-- **Naming conflicts**: Created function `continue_calc()` with variable `continue_calc` inside it. Python couldn't distinguish between them
-- **Yes/No validation logic**: Loop kept continuing even after setting `continue_calc = False`. Turned out I was testing with spaces between letters ("Y e s" instead of "Yes")
-- **f-string overuse**: Used f-strings without variables (`f'text'` instead of `'text'`), caught by pylint
-- **JSON key typo**: Misspelled `continue_calculation` as `continue_caclulation` in code, causing KeyError
+- **F-string syntax with dictionaries**: Got `SyntaxError: unmatched '['` when using same quote types for f-string and dictionary key. Fixed by alternating quote styles: `f"{messages['key']}"` vs `f'{messages["key"]}'`
+- **KeyError on invalid input**: Tried to access `messages['invalid_nums']` when JSON key was `'invalid_num'` (singular). Typo in code didn't match JSON.
+- **German "Nein" validation failing**: Had typo `"Nien"` in JSON instead of `"Nein"`. Took a moment to spot since validation was working for other languages.
+- **Chicken-and-egg problem**: Initially tried to use localized error for invalid language choice, but messages aren't loaded yet. Solved by hardcoding pre-selection error in English.
 
 ## Patterns Reinforced
-- **Input handling consistency**: Adding `.strip()` to EVERY input makes program more robust
-- **Test with edge cases**: Spaces, wrong capitalization, invalid entries. Users type weird things
-- **One feature per branch**: Clean git history makes it easy to track what changed when
-- **Function vs. top-level code**: Not everything needs to be in a function. Loops can live at module level until wrapping in main()
-- **Debugging with print statements**: Adding debug prints helped identify the "Y e s" spacing issue
+- **Check JSON keys carefully**: Typos in dictionary keys cause KeyErrors that aren't caught until runtime
+- **Quote consistency in f-strings**: When nesting quotes, alternate single/double to avoid syntax errors
+- **Dictionary mapping vs if/elif**: Much cleaner and more maintainable for simple key-value mappings
+- **Timing of variable availability**: Can't use `messages` before language is selected and messages are loaded
 
 ## What I Learned Today
-- **Scope matters**: Global variables can be accessed inside functions, but it creates dependencies that limit reusability
-- **Validation before conversion**: Always check if string is valid BEFORE calling `float()` to avoid crashes
-- **Git workflow becoming automatic**: Branch, implement, test, pylint, commit, merge, delete is now muscle memory
-- **JSON structure**: User-facing strings belong in config files, not hardcoded in Python
+- **Two-stage message loading**: Load entire JSON into `all_messages`, then select specific language into `messages`
+- **F-string quote nesting**: Can't use `f'{messages['key']}'` - must alternate quote types
+- **When NOT to extract functions**: Language selection happens once at startup, doesn't need to be a function
+- **Localization boundaries**: Some messages (like pre-language-selection errors) must stay in one language
+
+## What Still Needs Practice
+- **JSON access patterns**: Still need to look up syntax for loading and accessing nested JSON structures
+- **Variable naming conventions**: Remembering to use `all_messages` vs `messages` for clarity
+- **When to use .title()**: Apply to user input for validation, not to stored values in JSON
 
 ## Next Steps
-- Complete Feature 4: Internationalization (3 languages with dictionary mapping)
-- Apply remaining LSBot refinements during refactoring phase
-- Wrap everything in `main()` function
-- Further split `operation_choice()` into smaller focused functions
+- Refactoring phase: Apply remaining LSBot suggestions
+  - Split `operation_choice()` into smaller focused functions  
+  - Move division by zero handling to main
+  - Wrap everything in `main()` function
+- Final polish and testing across all languages
 
 ## Reflection
-Rebuilding independently proved I understand the patterns, not just following along. Getting stuck on different issues is part of learning and growing. The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
+Completing internationalization felt like a major milestone. The JSON structure came naturally, but the two-stage loading (all_messages → messages) took a moment to internalize. Most bugs were typos rather than logic errors, which shows the patterns are sinking in. Still reaching for documentation on JSON syntax, but that's expected. Four languages is ambitious and working smoothly!

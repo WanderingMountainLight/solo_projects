@@ -2,7 +2,7 @@
 import json
 
 with open('calculator_messages.json', 'r', encoding='utf-8') as file:
-    messages = json.load(file)
+    all_messages = json.load(file)
 
 def prompt(message):
     """Display a formatted message to the user"""
@@ -20,7 +20,7 @@ def pass_num():
     """Passes a valid number from user input"""
     user_input = input().strip()
     while not is_valid_num(user_input):
-        prompt(messages['invalid_nums'])
+        prompt(messages['invalid_num'])
         user_input = input().strip()
     return float(user_input)
 
@@ -48,6 +48,19 @@ def operation(number1, number2, op_choice):
         case '4':
             return number1 / number2
 
+prompt('Language:\n1) English\n2) Spanish\n3) Portugese\n4) German')
+
+lang_choice = input().strip()
+
+while lang_choice not in ['1', '2', '3', '4']:
+    prompt('''That is an invalid selction, please select:
+           \n1) Enlgish\n2) Spanish\n3 Portugese\n4) German''')
+    lang_choice = input().strip()
+
+lang_map = {'1': 'english', '2': 'spanish', '3': 'portuguese', '4': 'german'}
+lang = lang_map[lang_choice]
+
+messages = all_messages[lang]
 
 prompt(messages['welcome'])
 
@@ -72,19 +85,19 @@ while continue_calc:
             prompt(messages['div_by_zero'])
             num2 = pass_num()
 
-    prompt(f'Your first number is: {num1}')
-    prompt(f'Your second number is: {num2}')
-    prompt(f'Your total is: {operation(num1, num2, calc)}')
+    prompt(f"{messages['result_first']} {num1}")
+    prompt(f"{messages['result_second']} {num2}")
+    prompt(f"{messages['result_total']} {operation(num1, num2, calc)}")
     prompt(messages['continue_calculation'])
 
     answer = input()
 
     user_answer = answer.strip().title()
 
-    while user_answer not in ['Yes', 'No']:
+    while user_answer not in [messages['yes_response'], messages['no_response']]:
         prompt(messages['continue_invalid_input'])
         user_answer = input().strip().title()
 
-    if user_answer == 'No':
+    if user_answer == messages['no_response']:
         prompt(messages['thank_you'])
         continue_calc = False
