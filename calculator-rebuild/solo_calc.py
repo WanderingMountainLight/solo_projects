@@ -16,8 +16,9 @@ def is_valid_num(num):
     except ValueError:
         return False
 
-def pass_num(message):
+def pass_num(message, prompt_key):
     """Passes a valid number from user input"""
+    prompt(message[prompt_key])
     user_input = input().strip()
     while not is_valid_num(user_input):
         prompt(message['invalid_num'])
@@ -71,20 +72,16 @@ def main():
 
     while continue_calc:
 
-        prompt(messages['first_num'])
+        num1 = pass_num(messages, 'first_num')
 
-        num1 = pass_num(messages)
-
-        prompt(messages['second_num'])
-
-        num2 = pass_num(messages)
+        num2 = pass_num(messages, 'second_num')
 
         calc = prompt_for_operation(messages)
 
         if calc == '4':
             while num2 == 0.0:
                 prompt(messages['div_by_zero'])
-                num2 = pass_num(messages)
+                num2 = pass_num(messages, 'second_num')
 
         prompt(f"{messages['result_first']} {num1}")
         prompt(f"{messages['result_second']} {num2}")

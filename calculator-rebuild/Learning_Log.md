@@ -93,10 +93,10 @@ Successfully implemented internationalization with 4 languages (English, Spanish
 - Maintained 10/10 pylint score throughout
 
 ## Where I Got Stuck
-- **F-string syntax with dictionaries**: Got `SyntaxError: unmatched '['` when using same quote types for f-string and dictionary key. Fixed by alternating quote styles: `f"{messages['key']}"` vs `f'{messages["key"]}'`
-- **KeyError on invalid input**: Tried to access `messages['invalid_nums']` when JSON key was `'invalid_num'` (singular). Typo in code didn't match JSON. The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
-- **German "Nein" validation failing**: Had typo `"Nien"` in JSON instead of `"Nein"`. Took a moment to spot since validation was working for other languages.
-- **Chicken-and-egg problem**: Initially tried to use localized error for invalid language choice, but messages aren't loaded yet. Solved by hardcoding pre-selection error in English.
+**F-string syntax with dictionaries**: Got `SyntaxError: unmatched '['` when using same quote types for f-string and dictionary key. Fixed by alternating quote styles: `f"{messages['key']}"` vs `f'{messages["key"]}'`
+**KeyError on invalid input**: Tried to access `messages['invalid_nums']` when JSON key was `'invalid_num'` (singular). Typo in code didn't match JSON. The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
+**German "Nein" validation failing**: Had typo `"Nien"` in JSON instead of `"Nein"`. Took a moment to spot since validation was working for other languages.
+**Chicken-and-egg problem**: Initially tried to use localized error for invalid language choice, but messages aren't loaded yet. Solved by hardcoding pre-selection error in English.
 
 ## Patterns Reinforced
 - **Check JSON keys carefully**: Typos in dictionary keys cause KeyErrors that aren't caught until runtime
@@ -185,3 +185,56 @@ The refactoring phase solidified understanding of function design and scope. Whi
 - Solo version built independently, proving mastery of patterns
 - Refactoring applied same principles learned yesterday but implemented autonomously
 - More confident in decision-making about code organization
+
+# November 16, 2025 (Session 2) - Final Polish Based on LSBot Feedback
+**Time invested:** ~30 minutes
+**Goal:** Apply LSBot's additional refinement suggestion
+
+## What I Built
+Final refinement to number input handling:
+- Updated `pass_num()` to include initial prompt inside function
+- Added `prompt_key` parameter to make function more flexible and reusable
+- Matches pattern established with `prompt_for_operation()`
+- All number prompts now handled consistently
+
+## Key Accomplishments
+- Responded to code review feedback with additional refinement
+- Maintained 10/10 pylint score
+- Function now more reusable and follows single responsibility principle
+- Completed full development cycle: Build, Review, Refine, Complete
+
+## What Changed
+**Before:**
+```python
+# In main:
+prompt(messages['first_num'])
+num1 = pass_num(messages)
+```
+
+**After:**
+```python
+# In main:
+num1 = pass_num(messages, 'first_num')
+# Prompt happens inside function now
+```
+
+## What I Learned
+- **Encapsulation matters**: Moving prompt into function makes the function self-contained
+- **Parameterization adds flexibility**: `prompt_key` parameter makes same function work for different prompts
+- **Consistency in design**: All input functions (numbers, operations) now follow same pattern
+- **Professional iteration**: Real development includes listneing to feedback, implementing and refining working code
+
+## Reflection
+My implimentation of LSBot's feedback is driven by the belief that getting to "code works" isn't the goal of Software Development and Engineering. Professional code is maintainable and consistent. Software Engineers respond to feedback. LSBot's suggestion helped me see that even though my code worked and was beyond good enough, it could be more elegant by following the same pattern throughout. This exercise reinforced that software development is iterative and that good developers welcome feedback as an opportunity to improve.
+
+## Final Project State
+Calculator is now complete with:
+- All 4 bonus features implemented
+- All LSBot refinements applied
+- Consistent function design throughout
+- Professional git history showing iterative improvement
+- 10/10 pylint score maintained across all changes
+- 4 languages fully localized
+
+# Final Project Reflection
+I found developing the calculator on my own to be challenging but the problemsolving and iteration to be engaging and rewarding. As an aspiring SWE just starting their Launch School reskill journey, I find challenges like this are why I'm interested in pursuing this career change. I am coming into the SWE field at an exciting and challenging time with the previlance of AI systems to write boiler plate type code, but I am enjoying the challenge while also making use of AI systems to provide me an instant feeback loop and as a tool to be better, not the solution machine.
