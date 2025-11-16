@@ -16,11 +16,11 @@ def is_valid_num(num):
     except ValueError:
         return False
 
-def pass_num():
+def pass_num(message):
     """Passes a valid number from user input"""
     user_input = input().strip()
     while not is_valid_num(user_input):
-        prompt(messages['invalid_num'])
+        prompt(message['invalid_num'])
         user_input = input().strip()
     return float(user_input)
 
@@ -51,54 +51,55 @@ def operation(number1, number2, op_choice):
         case '4':
             return number1 / number2
 
-prompt('Language:\n1) English\n2) Spanish\n3) Portugese\n4) German')
-
-lang_choice = input().strip()
-
-while lang_choice not in ['1', '2', '3', '4']:
-    prompt('''That is an invalid selction, please select:
-           \n1) Enlgish\n2) Spanish\n3 Portugese\n4) German''')
+def main():
+    """Main calculation processing"""
+    prompt('Language:\n1) English\n2) Spanish\n3) Portugese\n4) German')
     lang_choice = input().strip()
 
-lang_map = {'1': 'english', '2': 'spanish', '3': 'portuguese', '4': 'german'}
-lang = lang_map[lang_choice]
+    while lang_choice not in ['1', '2', '3', '4']:
+        prompt('''That is an invalid selction, please select:
+            \n1) Enlgish\n2) Spanish\n3 Portugese\n4) German''')
+        lang_choice = input().strip()
 
-messages = all_messages[lang]
+    lang_map = {'1': 'english', '2': 'spanish', '3': 'portuguese', '4': 'german'}
+    lang = lang_map[lang_choice]
 
-prompt(messages['welcome'])
+    messages = all_messages[lang]
+    prompt(messages['welcome'])
 
-continue_calc = True
+    continue_calc = True
 
-while continue_calc:
+    while continue_calc:
 
-    prompt(messages['first_num'])
+        prompt(messages['first_num'])
 
-    num1 = pass_num()
+        num1 = pass_num(messages)
 
-    prompt(messages['second_num'])
+        prompt(messages['second_num'])
 
-    num2 = pass_num()
+        num2 = pass_num(messages)
 
-    calc = prompt_for_operation(messages)
+        calc = prompt_for_operation(messages)
 
-    if calc == '4':
-        while num2 == 0.0:
-            prompt(messages['div_by_zero'])
-            num2 = pass_num()
+        if calc == '4':
+            while num2 == 0.0:
+                prompt(messages['div_by_zero'])
+                num2 = pass_num(messages)
 
-    prompt(f"{messages['result_first']} {num1}")
-    prompt(f"{messages['result_second']} {num2}")
-    prompt(f"{messages['result_total']} {operation(num1, num2, calc)}")
-    prompt(messages['continue_calculation'])
+        prompt(f"{messages['result_first']} {num1}")
+        prompt(f"{messages['result_second']} {num2}")
+        prompt(f"{messages['result_total']} {operation(num1, num2, calc)}")
+        prompt(messages['continue_calculation'])
 
-    answer = input()
+        answer = input()
 
-    user_answer = answer.strip().title()
+        user_answer = answer.strip().title()
 
-    while user_answer not in [messages['yes_response'], messages['no_response']]:
-        prompt(messages['continue_invalid_input'])
-        user_answer = input().strip().title()
+        while user_answer not in [messages['yes_response'], messages['no_response']]:
+            prompt(messages['continue_invalid_input'])
+            user_answer = input().strip().title()
 
-    if user_answer == messages['no_response']:
-        prompt(messages['thank_you'])
-        continue_calc = False
+        if user_answer == messages['no_response']:
+            prompt(messages['thank_you'])
+            continue_calc = False
+main()
