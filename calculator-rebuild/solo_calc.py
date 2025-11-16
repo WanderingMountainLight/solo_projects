@@ -28,12 +28,15 @@ def valid_op(oper):
     """Checks user input to insure valid selection"""
     return is_valid_num(oper) and float(oper) in [1, 2, 3, 4]
 
-def op():
+def prompt_for_operation(msg):
     """Error handling for invalid operation selection"""
+    prompt(msg['operation_selection'])
     op_input = input().strip()
+
     while not valid_op(op_input):
-        prompt(messages['valid_op'])
+        prompt(msg['valid_op'])
         op_input = input().strip()
+
     return op_input
 
 def operation(number1, number2, op_choice):
@@ -76,9 +79,7 @@ while continue_calc:
 
     num2 = pass_num()
 
-    prompt(messages['operation_selection'])
-
-    calc = op()
+    calc = prompt_for_operation(messages)
 
     if calc == '4':
         while num2 == 0.0:

@@ -37,7 +37,7 @@
         "no_response": "No"
     },
 
-    "portugese":{
+    "portuguese":{
         "welcome" : "Bem-vindo à Calculadora.",
         "valid_number": "Isso não é um número. Por favor, insira um número: ",
         "valid_op" : "Essa não é uma seleção válida. Por favor, selecione entre: 1) Adicionar\n2) Subtrair\n3) Multiplicar\n4) Dividir",
@@ -45,8 +45,8 @@
         "second_num" : "Por favor, insira o segundo número",
         "operation_selection" : "Por favor, selecione a operação que você gostaria de calcular:\n1) Adicionar\n2) Subtrair\n3) Multiplicar\n4) Dividir",
         "div_by_zero" : "Não pode ser dividido por zero.\nPor favor, insira um segundo número diferente:",
-        "continue_calculation" : "Você gostaria de calcular mais alguma coisa? \nSim ou Não",
-        "continue_invalid_input" : "Essa não é uma entrada válida, selecione: Sim ou Não",
+        "continue_calculation" : "Você gostaria de calcular mais alguma coisa? \nSim ou Nao",
+        "continue_invalid_input" : "Essa não é uma entrada válida, selecione: Sim ou Nao",
         "thank_you" : "Obrigado por usar minha calculadora!",
         "invalid_num": "Isso não é um número. Por favor, insira um número: ",
         "result_first": "Seu primeiro número é: ",

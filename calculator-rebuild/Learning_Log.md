@@ -78,4 +78,4 @@ Successfully implemented internationalization with 4 languages (English, Spanish
 - Final polish and testing across all languages
 
 ## Reflection
-Completing internationalization felt like a major milestone. The JSON structure came naturally, but the two-stage loading (all_messages → messages) took a moment to internalize. Most bugs were typos rather than logic errors, which shows the patterns are sinking in. Still reaching for documentation on JSON syntax, but that's expected. Four languages is ambitious and working smoothly!
+Completing internationalization felt like a major milestone. The JSON structure came naturally, but the two-stage loading (all_messages → messages) took a moment to internalize. Most bugs were typos rather than logic errors, which shows the patterns are sinking in. Still reaching for documentation and Claude for JSON syntax, but that's expected. Four languages is ambitious and working smoothly!
