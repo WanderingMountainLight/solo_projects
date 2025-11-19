@@ -93,10 +93,10 @@ Successfully implemented internationalization with 4 languages (English, Spanish
 - Maintained 10/10 pylint score throughout
 
 ## Where I Got Stuck
-**F-string syntax with dictionaries**: Got `SyntaxError: unmatched '['` when using same quote types for f-string and dictionary key. Fixed by alternating quote styles: `f"{messages['key']}"` vs `f'{messages["key"]}'`
-**KeyError on invalid input**: Tried to access `messages['invalid_nums']` when JSON key was `'invalid_num'` (singular). Typo in code didn't match JSON. The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
-**German "Nein" validation failing**: Had typo `"Nien"` in JSON instead of `"Nein"`. Took a moment to spot since validation was working for other languages.
-**Chicken-and-egg problem**: Initially tried to use localized error for invalid language choice, but messages aren't loaded yet. Solved by hardcoding pre-selection error in English.
+- **F-string syntax with dictionaries**: Got `SyntaxError: unmatched '['` when using same quote types for f-string and dictionary key. Fixed by alternating quote styles: `f"{messages['key']}"` vs `f'{messages["key"]}'`
+- **KeyError on invalid input**: Tried to access `messages['invalid_nums']` when JSON key was `'invalid_num'` (singular). Typo in code didn't match JSON. The "Y e s" bug was frustrating but taught me to test with realistic inputs, not just correct happy-path data.
+- **German "Nein" validation failing**: Had typo `"Nien"` in JSON instead of `"Nein"`. Took a moment to spot since validation was working for other languages.
+- **Chicken-and-egg problem**: Initially tried to use localized error for invalid language choice, but messages aren't loaded yet. Solved by hardcoding pre-selection error in English.
 
 ## Patterns Reinforced
 - **Check JSON keys carefully**: Typos in dictionary keys cause KeyErrors that aren't caught until runtime
@@ -222,10 +222,10 @@ num1 = pass_num(messages, 'first_num')
 - **Encapsulation matters**: Moving prompt into function makes the function self-contained
 - **Parameterization adds flexibility**: `prompt_key` parameter makes same function work for different prompts
 - **Consistency in design**: All input functions (numbers, operations) now follow same pattern
-- **Professional iteration**: Real development includes listneing to feedback, implementing and refining working code
+- **Professional iteration**: Real development includes listening to feedback, implementing and refining working code
 
 ## Reflection
-My implimentation of LSBot's feedback is driven by the belief that getting to "code works" isn't the goal of Software Development and Engineering. Professional code is maintainable and consistent. Software Engineers respond to feedback. LSBot's suggestion helped me see that even though my code worked and was beyond good enough, it could be more elegant by following the same pattern throughout. This exercise reinforced that software development is iterative and that good developers welcome feedback as an opportunity to improve.
+My implementation of LSBot's feedback is driven by my belief that "code works" isn't the end goal of Software Development and Engineering. Professional code is maintainable and consistent. Software Engineers respond to feedback. LSBot's suggestion helped me see that even though my code worked and was beyond good enough, it could be more elegant by following the same pattern throughout. This exercise reinforced that software development is iterative and that good developers welcome feedback as an opportunity to improve.
 
 ## Final Project State
 Calculator is now complete with:
@@ -237,4 +237,4 @@ Calculator is now complete with:
 - 4 languages fully localized
 
 # Final Project Reflection
-I found developing the calculator on my own to be challenging but the problemsolving and iteration to be engaging and rewarding. As an aspiring SWE just starting their Launch School reskill journey, I find challenges like this are why I'm interested in pursuing this career change. I am coming into the SWE field at an exciting and challenging time with the previlance of AI systems to write boiler plate type code, but I am enjoying the challenge while also making use of AI systems to provide me an instant feeback loop and as a tool to be better, not the solution machine.
+I found developing the calculator on my own to be challenging but the problemsolving and iteration to be engaging and rewarding. As an aspiring SWE just starting their Launch School reskill journey, I find challenges like this are why I'm interested in pursuing this career change. I am coming into the SWE field at an exciting and challenging time with the prevalence of AI systems to write boiler plate type code, but I am enjoying the challenge while also making use of AI systems to provide me an instant feeback loop and as a tool to be better, not the solution machine.
