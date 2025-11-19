@@ -13,15 +13,15 @@ A loan payment calculator that computes monthly payments based on principle, APR
 ## Features
 
 ### Phase 1: Core Calculator (Happy Path)
-- [ ] Accept principle amount
-- [ ] Accept interest rate (APR)
-- [ ] Accept loan term
-- [ ] Calculate monthly payment
-- [ ] Display loan summary
+- [x] Accept principle amount
+- [x] Accept interest rate (APR)
+- [x] Accept loan term
+- [x] Calculate monthly payment
+- [x] Display loan summary
 
 ### Phase 2: Input Handling
-- [ ] Accept months or years for loan term
-- [ ] Clean user input (commas, $, %)
+- [x] Accept months or years for loan term
+- [x] Clean user input (commas, $, %)
 
 ### Phase 3: Validation
 - [ ] Validate numeric input
@@ -36,6 +36,11 @@ A loan payment calculator that computes monthly payments based on principle, APR
 
 ### Phase 5: Stretch Goal
 - [ ] Generate amortization schedule
+
+## Future Feature Ideas
+- [ ] Credit score bands to suggest interest rates
+  - Auto loans: <600 = 11.99%, 600-650 = 9.99%, etc.
+  - Mortgages: <600 = 8.99%, 600-650 = 7.99%, etc.
 
 ## Learning Goals
 [What are you trying to master with this rebuild?]
