@@ -36,7 +36,9 @@ A loan payment calculator that computes monthly payments based on principle, APR
 
 ### Phase 5: Stretch Goal
 - [x] Generate amortization schedule
-- [x] Add support for downpayment
+
+### Bonus/In the moment
+- [x] Add support for down payment
 
 ## Future Feature Ideas
 - [ ] Credit score bands to suggest interest rates
