@@ -46,3 +46,66 @@
 
 ## Patterns Observed
 If while loops will not return a value while it is false, I can just have the logic after the validation completes and passed the True value
+
+## Session 2: November 19, 2025 (Continued)
+
+### Time Invested
+1 hour split across building and debugging
+
+### What I Built
+- Phase 3: Comprehensive validation + 0% APR handling
+- Phase 4: Polish (screen clearing, formatting refinements)
+
+### Key Decisions Made
+1. **Helper function decision**: Considered creating `clean_input()` helper but chose to keep validation functions separate for clarity - each has subtly different requirements, and the helper function would have lead to the code being harder to follow, due to multiple functions needing to be passed to achieve the desired return.
+2. **Validation strategy**: Added `<= 0` checks to principle and term inputs (rejects zero); interest uses `< 0` (allows 0% APR)
+3. **Line continuation**: Used parentheses for multi-line function calls to satisfy pylint while keeping output clean
+
+### Stuck Points & Breakthroughs
+
+#### Stuck: Rendering terrible after pylint fixes
+**Problem**: Prompts were displaying with extra whitespace and newlines after making pylint happy
+**Cause**: Used triple-quoted strings with indentation - Python included all the whitespace in the string
+**Solution**: Changed to parentheses-based line continuation for function calls
+**Lesson**: Triple-quoted strings preserve ALL whitespace including indentation. For breaking long lines, use parentheses or backslashes instead.
+
+#### Stuck: Interest validation bug
+**Problem**: Validation was checking `float(user_input)` instead of `float(cleaned_user)`
+**Cause**: Used wrong variable - tried to convert "5%" to float instead of "5"
+**Solution**: Changed to check `float(cleaned_user)` after removing `%` symbol via the cleaned_user variable
+**Lesson**: Always validate the cleaned version of input, not the raw input with special characters
+
+#### Breakthrough: 0% APR handling
+**Problem**: Original formula divides by zero when APR is 0
+**Solution**: Added conditional check - if APR is 0, use simple division (principle/term), else use compound interest formula
+**Lesson**: Edge cases often need special handling. The 0% case has a much simpler formula: just divide principle by number of payments.
+
+### What I Reinforced
+- Edge case handling (0% APR, negative values, zero values)
+- Validation patterns across multiple similar functions
+- Pylint compliance while maintaining readable code
+- String formatting (`:g` for removing trailing zeros)
+- Code organization and feature branch workflow
+- Import os and os.system('clear') command, initally passed as os.system(clear) which produced an error before resolving
+
+### Questions for Later Review
+- When is code duplication acceptable vs when should you create helpers?
+- Trade-offs between DRY principle and code clarity
+
+### Completed Features
+- [x] Phase 1: Happy path
+- [x] Phase 2: Input handling  
+- [x] Phase 3: Validation + 0% APR
+- [x] Phase 4: Polish & UX improvements
+
+### Next Steps
+- Phase 5: Amortization schedule (stretch goal) - TBD
+- Consider: How to balance percieved DRY effiecncy vs code clarity for similar but different functions.
+
+---
+
+## Patterns Observed
+- Each validation function has subtle differences (> 0 vs >= 0, cleaning needs, return types)
+- Sometimes keeping code separate is clearer than forcing abstraction
+- Pylint forces you to think about line length and readability
+- Testing edge cases (0%, negatives) reveals bugs in validation logic

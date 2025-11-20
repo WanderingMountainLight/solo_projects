@@ -24,15 +24,15 @@ A loan payment calculator that computes monthly payments based on principle, APR
 - [x] Clean user input (commas, $, %)
 
 ### Phase 3: Validation
-- [ ] Validate numeric input
-- [ ] Handle 0% APR special case
-- [ ] Reject invalid/negative values
-- [ ] Loop on invalid input
+- [x] Validate numeric input
+- [x] Handle 0% APR special case
+- [x] Reject invalid/negative values
+- [x] Loop on invalid input
 
 ### Phase 4: User Experience
-- [ ] Calculator loop (multiple calculations)
-- [ ] Format currency output
-- [ ] Clear screen between calculations
+- [x] Calculator loop (multiple calculations)
+- [x] Format currency output
+- [x] Clear screen between calculations
 
 ### Phase 5: Stretch Goal
 - [ ] Generate amortization schedule
