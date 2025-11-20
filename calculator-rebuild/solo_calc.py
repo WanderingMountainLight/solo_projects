@@ -26,7 +26,7 @@ def pass_num(message, prompt_key):
     return float(user_input)
 
 def valid_op(oper):
-    """Checks user input to insure valid selection"""
+    """Checks user input to ensure valid selection"""
     return is_valid_num(oper) and float(oper) in [1, 2, 3, 4]
 
 def prompt_for_operation(msg):
@@ -54,12 +54,17 @@ def operation(number1, number2, op_choice):
 
 def main():
     """Main calculation processing"""
-    prompt('Language:\n1) English\n2) Spanish\n3) Portugese\n4) German')
+    prompt('Language:\n1) English\n2) Spanish\n3) Portuguese\n4) German')
     lang_choice = input().strip()
 
     while lang_choice not in ['1', '2', '3', '4']:
-        prompt('''That is an invalid selction, please select:
-            \n1) Enlgish\n2) Spanish\n3 Portugese\n4) German''')
+        prompt(
+            "That is an invalid selection, please select:\n"
+            "1) English\n"
+            "2) Spanish\n"
+            "3) Portuguese\n"
+            "4) German"
+        )
         lang_choice = input().strip()
 
     lang_map = {'1': 'english', '2': 'spanish', '3': 'portuguese', '4': 'german'}
@@ -83,6 +88,7 @@ def main():
                 prompt(messages['div_by_zero'])
                 num2 = pass_num(messages, 'second_num')
 
+        print()
         prompt(f"{messages['result_first']} {num1}")
         prompt(f"{messages['result_second']} {num2}")
         prompt(f"{messages['result_total']} {operation(num1, num2, calc)}")
