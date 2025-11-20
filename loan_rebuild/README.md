@@ -35,12 +35,14 @@ A loan payment calculator that computes monthly payments based on principle, APR
 - [x] Clear screen between calculations
 
 ### Phase 5: Stretch Goal
-- [ ] Generate amortization schedule
+- [x] Generate amortization schedule
+- [x] Add support for downpayment
 
 ## Future Feature Ideas
 - [ ] Credit score bands to suggest interest rates
   - Auto loans: <600 = 11.99%, 600-650 = 9.99%, etc.
   - Mortgages: <600 = 8.99%, 600-650 = 7.99%, etc.
+- [ ] Write Amortization schedule to a text file/csv  
 
 ## Learning Goals
 [What are you trying to master with this rebuild?]

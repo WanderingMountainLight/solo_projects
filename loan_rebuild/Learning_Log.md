@@ -109,3 +109,91 @@ If while loops will not return a value while it is false, I can just have the lo
 - Sometimes keeping code separate is clearer than forcing abstraction
 - Pylint forces you to think about line length and readability
 - Testing edge cases (0%, negatives) reveals bugs in validation logic
+
+## Session 3: November 19, 2025 (Evening)
+
+### Time Invested
+2+ hours building amortization schedule and down payment features
+
+### What I Built
+- Phase 5: Amortization schedule with user prompt
+- Bonus Feature: Down payment functionality
+
+### Key Decisions Made
+1. **File I/O decision**: Recognized that writing amortization to file was beyond current skill level - chose to implement user prompt instead for terminal display
+2. **Down payment validation**: Initially over-engineered edge case handling (what if down payment > loan?), simplified to just validate in the while loop
+3. **Program flow**: Learned to structure prompts so both "Yes" and "No" paths lead to the same next step (asking about another loan)
+
+### Stuck Points & Breakthroughs
+
+#### Stuck: Amortization output volume
+**Problem**: 360 payments overwhelm terminal display
+**Cause**: Long-term mortgages produce hundreds of lines of output
+**Solution**: Added user prompt - "Would you like to see amortization schedule?" so users can choose
+**Lesson**: Sometimes the best feature is giving users control over what they see
+
+#### Stuck: Down payment logic complexity
+**Problem**: Tried to handle edge case where down payment >= loan amount with complex branching (ask to re-enter, exit program, etc.)
+**Cause**: Overthinking the problem - mixed validation with program control flow
+**Solution**: Simplified to just validate `down_payment < loan_amount` in the while loop condition
+**Lesson**: Keep validation functions focused on validation. The pattern "invalid input? ask again" is sufficient.
+
+#### Stuck: Amortization calculation bugs
+**Problem**: Balance not decreasing correctly, interest calculated wrong, for loop syntax error
+**Cause**: Multiple issues - used tuple instead of range(), calculated interest from payment instead of balance, subtracted full payment instead of principal
+**Solution**: Fixed incrementally. Corrected loop syntax, based interest on remaining balance, subtracted only principal payment
+**Lesson**: Complex calculations need careful attention to which variables update and when. Each iteration: calculate interest from balance, calculate principal from payment, update balance with principal only.
+
+#### Stuck: Return value printing `None`
+**Problem**: `print(amortization_schedule(...))` was printing `None` at the end
+**Cause**: Function doesn't return anything, just prints directly
+**Solution**: Removed the `print()` wrapper, just call the function directly
+**Lesson**: Functions that print don't need to be wrapped in print(). Understand what functions return vs what they display. This was a late in the coding session type mistake.
+
+#### Stuck: Prompt flow after amortization
+**Problem**: If user said "Yes" to schedule, program never asked about calculating another loan
+**Cause**: Had "calculate another" prompt inside the `else` block (only for "No" to schedule)
+**Solution**: Moved prompt outside the if/else so it runs regardless of amortization choice
+**Lesson**: Think about code flow for ALL paths. Both "Yes" and "No" should lead to the same next step.
+
+### What I Reinforced
+- Loop mechanics (range vs tuple syntax)
+- Variable updates in iterative calculations
+- Validation patterns and keeping functions focused
+- Program flow and control structures
+- When to simplify vs when to add complexity
+- Recognizing when a feature is beyond current skill level
+
+### Questions for Later Review
+- When to write output to files vs display in terminal?
+- How to handle very large outputs elegantly?
+- When is it okay to say "this is beyond me right now"?
+
+### Completed Features
+- [x] Phase 1: Happy path
+- [x] Phase 2: Input handling  
+- [x] Phase 3: Validation + 0% APR
+- [x] Phase 4: Polish & UX improvements
+- [x] Phase 5: Amortization schedule
+- [x] Bonus: Down payment feature
+
+### Final Reflections
+This rebuild took ~6 hours total vs 7-8 hours for the original. Adding the additional functionality (amortization and down payment) added another ~2 hours, but I now have a much more fully featured calculator. I successfully:
+- Built from scratch without reference code
+- Added features beyond the original (down payment, amortization)
+- Handled complex calculations (amortization)
+- Made thoughtful decisions about scope and complexity
+- Maintained 10/10 pylint throughout
+- **Key Realization**: I can think algorithmically. The amortization schedule wasn't about memorizing syntax. It was about understanding the flow and how each dependency impacted the next. This felt like drawing the flowchart that is taught in Launch School while coding to a solution.
+- I recognized that file I/O would be a better way to display the amortization schedule but it is currently beyond my level. I found a simpiler solution, prompting the user, for now.
+
+---
+
+## Final Stats
+- Total Time: ~6/7 hours (Session 1: 4hrs, Session 2: 1hr, Session 3: 2+hrs)
+- completed the whole project in one day vs 2 days initally estimated
+- Lines of Code: ~180
+- Functions Created: 10
+- Pylint Score: 10/10
+- Features: Core calculator + amortization + down payment
+- Git Commits: Multiple feature branches, clean history
